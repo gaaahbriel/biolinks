@@ -29,25 +29,15 @@ class RegisterRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'email' => ['required', 'email', 'confirmed', 'unique:users'],
-            'password' => [
-                'required',
-                Password::min(8)
-                    ->letters()
-                    ->mixedCase()
-                    ->numbers()
-                    ->symbols()
-                    ->uncompromised()
-            ],
+            'password' => ['required',Password::defaults()]
         ];
     }
 
     public function attemptRegister()
     {
-        $user = User::query()->create([
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => Hash::make($this->password)
-        ]);
+        $user = User::query()->create(
+            $this->validated()
+        );
 
         if ($user) {
             auth()->login($user);
