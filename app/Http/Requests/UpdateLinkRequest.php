@@ -12,7 +12,7 @@ class UpdateLinkRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,8 @@ class UpdateLinkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'link' => ['required', 'url'],
+            'name' => ['required', 'min:3']
         ];
     }
 }

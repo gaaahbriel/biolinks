@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Link;
 use App\Http\Requests\StoreLinkRequest;
 use App\Http\Requests\UpdateLinkRequest;
+use App\Models\User;
 
 class LinkController extends Controller
 {
@@ -37,7 +38,7 @@ class LinkController extends Controller
      */
     public function edit(Link $link)
     {
-        
+        return view('links.edit', compact('link'));
     }
 
     /**
@@ -45,7 +46,9 @@ class LinkController extends Controller
      */
     public function update(UpdateLinkRequest $request, Link $link)
     {
-        //
+        $link->fill($request->validated())->save();
+
+        return to_route('dashboard');
     }
 
     /**
