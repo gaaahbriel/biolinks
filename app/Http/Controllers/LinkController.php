@@ -6,6 +6,7 @@ use App\Models\Link;
 use App\Http\Requests\StoreLinkRequest;
 use App\Http\Requests\UpdateLinkRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class LinkController extends Controller
 {
@@ -61,5 +62,53 @@ class LinkController extends Controller
 
         return to_route('dashboard')
             ->with('message', 'Link deletado com sucesso!');
+    }
+
+    public function up(Link $link)
+    {
+        DB::transaction(function () use ($link) {
+            $order = $link->sort;
+            $newOrder = $order - 1;
+
+            /** @var User $user */
+            $user = auth()->user();
+
+            $swapWith = $user->links()->where('sort', '=', $newOrder)
+                ->first();
+
+            $link->fill([
+                'sort' => $newOrder
+            ])->save();
+
+            $swapWith->fill([
+                'sort' => $order
+            ])->save();
+        });
+
+        return back();
+    }
+
+    public function down(Link $link)
+    {
+        DB::transaction(function () use ($link) {
+            $order = $link->sort;
+            $newOrder = $order + 1;
+
+            /** @var User $user */
+            $user = auth()->user();
+
+            $swapWith = $user->links()->where('sort', '=', $newOrder)
+                ->first();
+
+            $link->fill([
+                'sort' => $newOrder
+            ])->save();
+
+            $swapWith->fill([
+                'sort' => $order
+            ])->save();
+        });
+
+        return back();
     }
 }
