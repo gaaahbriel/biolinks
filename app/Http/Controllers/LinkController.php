@@ -48,7 +48,8 @@ class LinkController extends Controller
     {
         $link->fill($request->validated())->save();
 
-        return to_route('dashboard');
+        return to_route('dashboard')
+            ->with('message', 'Link atualizado com sucesso!');
     }
 
     /**
@@ -56,6 +57,9 @@ class LinkController extends Controller
      */
     public function destroy(Link $link)
     {
-        //
+        $link->delete();
+
+        return to_route('dashboard')
+            ->with('message', 'Link deletado com sucesso!');
     }
 }

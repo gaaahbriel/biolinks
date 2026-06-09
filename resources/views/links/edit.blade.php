@@ -20,6 +20,7 @@
             <p>{{ $message }}</p>
             @enderror
         </div>
+        <a href="{{ route('dashboard') }}">Voltar</a>
         <div><button type="submit">Salvar</button></div>
     </form>
 </div>
