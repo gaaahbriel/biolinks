@@ -15,28 +15,30 @@ class Link extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function moveUp() {
+    public function moveUp()
+    {
         $this->move(-1);
     }
 
-    public function moveDown() {
+    public function moveDown()
+    {
         $this->move(+1);
     }
 
     private function move($to)
     {
-            $order = $this->sort;
-            $newOrder = $order + $to;
+        $order = $this->sort;
+        $newOrder = $order + $to;
 
-            $swapWith = $this->user->links()->where('sort', '=', $newOrder)
-                ->first();
+        $swapWith = $this->user->links()->where('sort', '=', $newOrder)
+            ->first();
 
-            $this->fill([
-                'sort' => $newOrder
-            ])->save();
+        $this->fill([
+            'sort' => $newOrder
+        ])->save();
 
-            $swapWith->fill([
-                'sort' => $order
-            ])->save();
+        $swapWith->fill([
+            'sort' => $order
+        ])->save();
     }
 }

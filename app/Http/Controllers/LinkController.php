@@ -38,6 +38,7 @@ class LinkController extends Controller
      */
     public function edit(Link $link)
     {
+
         return view('links.edit', compact('link'));
     }
 

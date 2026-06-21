@@ -1,6 +1,8 @@
 <div>
     <h1>Dashboard</h1>
     <h2>Bem-vindo, {{ auth()->user()->name }} :: id {{ auth()->user()->id }}</h2>
+    <a href="{{ route('profile') }}">Atualizar Profile</a>
+
 
     @if($message = session()->get('message'))
     <p>{{ $message }}</p>
@@ -10,7 +12,7 @@
 
     <ul>
         @foreach ($links as $link)
-        <li style="display: flex";>
+        <li style="display: flex" ;>
             @unless ($loop->last)
             <form action="{{ route('links.down', $link) }}" method="POST">
                 @csrf
