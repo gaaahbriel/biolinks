@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BioLinkController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,3 +38,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'update']);
 });
+
+Route::get('/{user:handler}', BioLinkController::class)->name('biolink');
