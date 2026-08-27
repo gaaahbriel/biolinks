@@ -1,3 +1,4 @@
+<x-layout.app>
 <div>
     <h1>Editar um link :: {{ $link->name }}</h1>
 
@@ -24,3 +25,4 @@
         <div><button type="submit">Salvar</button></div>
     </form>
 </div>
+</x-layout.app>

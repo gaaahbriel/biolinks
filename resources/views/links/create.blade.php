@@ -1,3 +1,4 @@
+<x-layout.app>
 <div>
     <h1>Criar um link</h1>
 
@@ -22,3 +23,4 @@
         <div><button type="submit">Criar um link</button></div>
     </form>
 </div>
+</x-layout.app>

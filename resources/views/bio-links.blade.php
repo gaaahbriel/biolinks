@@ -1,3 +1,4 @@
+<x-layout.app>
 <div>
     <img src="{{ $user->photo ? asset('/storage/' . $user->photo) : asset('images/default-avatar.png') }}" alt="Profile Photo" width="100">
     <h2>User, {{ $user->name }} :: id {{ $user->id }}</h2>
@@ -12,3 +13,4 @@
         @endforeach
     </ul>
 </div>
+</x-layout.app>

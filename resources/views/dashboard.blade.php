@@ -1,4 +1,5 @@
-<div>
+<x-layout.app>
+    <div>
     <h1>Dashboard</h1>
     <h2>Bem-vindo, {{ auth()->user()->name }} :: id {{ auth()->user()->id }}</h2>
     <a href="{{ route('profile') }}">Atualizar Profile</a>
@@ -39,3 +40,4 @@
         @endforeach
     </ul>
 </div>
+</x-layout.app>

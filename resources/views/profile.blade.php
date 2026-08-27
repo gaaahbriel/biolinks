@@ -1,4 +1,5 @@
-<div>
+<x-layout.app>
+    <div>
     <h1>Profile</h1>
 
     @if($message = session()->get('message'))
@@ -40,3 +41,4 @@
         <div><button type="submit">Update Profile</button></div>
     </form>
 </div>
+</x-layout.app>

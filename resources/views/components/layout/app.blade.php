@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="{{ config('app.locale') }}" class="h-full">
+<html lang="{{ config('app.locale') }}" class="h-full" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ config('app.name') }}</title>
     @vite('resources/css/app.css')
 </head>
-<body class="bg-red-900 text-slate-50 h-full">
-    <h1 class="text-3xl font-bold underline">
-        {{ config('app.name') }}
+
+<body class="bg-base-900 text-slate-50 h-full">
+    {{$slot}}
 </body>
+
 </html>
