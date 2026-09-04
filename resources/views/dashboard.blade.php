@@ -1,9 +1,14 @@
 <x-layout.app>
     <x-container>
-        <div class="text-center space-y-4">
+        <div class="absolute top-10 left-10 flex flex-col gap-4">
+            <x-button ghost :href="route('profile')">Edit Profile</x-button>
+            <x-button ghost :href="route('links.create')">Create Link</x-button>
+             <x-button ghost :href="route('logout')">Logout</x-button>
+        </div>
+        <div class="text-center space-y-4 w-2/3">
             <x-img src="/storage/{{ $user->photo }}" alt="Profile Photo" />
             <div class="font-bold text-2xl tracking-wider">{{$user->name}}</div>
-            <div class="text-sm opacity-80">{{$user->description}}</div>
+            <div class="text-sm opacity-80 mb-6">{{$user->description}}</div>
 
             <ul class="space-y-2">
                 @foreach ($links as $link)
@@ -21,11 +26,11 @@
                     @endunless
 
                     @unless ($loop->first)
-                    <form :route="route('links.up', $link)" patch>
+                    <x-form :route="route('links.up', $link)" patch>
                         <x-button ghost>
                             <x-icons.arrow-up class="w-6 h-6" />
                         </x-button>
-                    </form>
+                    </x-form>
                     @else
                     <x-button disabled ghost>
                         <x-icons.arrow-up class="w-6 h-6 opacity-0" />
@@ -33,7 +38,7 @@
                     @endunless
 
 
-                    <x-button href="{{ route('links.edit', $link) }}" block outline info>
+                    <x-button :route="route('links.edit', $link)" block outline info>
                         {{ $link->name }}
                     </x-button>
 
